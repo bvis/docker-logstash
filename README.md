@@ -6,6 +6,23 @@ This image starts a logstash container with a basic configuration that parses sy
 
 If you are using LOGSPOUT be sure that it ignores this container or you'll get an infinite loop of logging.
 
-Be sure that the endpoint of elasticsearch is reachable by this container in the 9200 port.
+By default it tries to send the logs to the Elasticsearch on the address "elasticsearch:9200".
 
-    docker service create --network logging --name logstash -e LOGSPOUT=ignore logstash
+    docker service create \
+      --name logstash \
+      -e LOGSPOUT=ignore \
+      basi/logstash
+    
+This can be changed using the environment variables:
+
+- ELASTICSEARCH_ADDR
+- ELASTICSEARCH_PORT
+
+For example:
+
+    docker service create \
+      --name logstash \
+      -e LOGSPOUT=ignore \
+      -e ELASTICSEARCH_ADDR=myelastic.example.com \
+      -e ELASTICSEARCH_PORT=9201
+      basi/logstash
