@@ -17,7 +17,7 @@ This can be changed using the environment variables:
 
 - ELASTICSEARCH_ADDR
 - ELASTICSEARCH_PORT
-- ELASTICSEARCH_PROTOCOL
+- SSL
 - ELASTICSEARCH_USER
 - ELASTICSEARCH_PASSWORD
 
@@ -26,7 +26,7 @@ For example:
     docker service create \
       --name logstash \
       -e LOGSPOUT=ignore \
-      -e ELASTICSEARCH_PROTOCOL=https \
+      -e SSL=true \
       -e ELASTICSEARCH_USER=user \
       -e ELASTICSEARCH_PASSWORD=password \
       -e ELASTICSEARCH_ADDR=myelastic.example.com \
