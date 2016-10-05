@@ -17,9 +17,9 @@ This can be changed using the environment variables:
 
 - ELASTICSEARCH_ADDR
 - ELASTICSEARCH_PORT
-- ELASTICSEARCH_PROTOCOL  (optional)
-- ELASTICSEARCH_USER      (optional)
-- ELASTICSEARCH_PASSWORD  (optional)
+- ELASTICSEARCH_PROTOCOL
+- ELASTICSEARCH_USER
+- ELASTICSEARCH_PASSWORD
 
 For example:
 
