@@ -1,11 +1,13 @@
 #!/bin/bash -e
 
-replace="${ELASTICSEARCH_PROTOCOL}://${ELASTICSEARCH_ADDR}:${ELASTICSEARCH_PORT}"
+replace="${ELASTICSEARCH_ADDR}:${ELASTICSEARCH_PORT}"
 
 if [ ! -z ${ELASTICSEARCH_PASSWORD} ] && [ ! -z ${ELASTICSEARCH_USER} ]
 then
-    replace="${ELASTICSEARCH_USER}:${ELASTICSEARCH_PASSWORD}${replace}"
+    replace="${ELASTICSEARCH_USER}:${ELASTICSEARCH_PASSWORD}@${replace}"
 fi
+
+replace="${ELASTICSEARCH_PROTOCOL}://$replace"
 
 # Replace placeholder by environment variables
 sed -i "s%#ELASTICSEARCH#%$replace%g" /config-dir/logstash.conf
