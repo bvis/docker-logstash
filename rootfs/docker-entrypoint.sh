@@ -16,32 +16,13 @@ then
     password="\npassword => ${ELASTICSEARCH_PASSWORD}\n"
 fi
 
-echo "
-input {
-  # Listens on 514/udp and 514/tcp by default; change that to non-privileged port
-  syslog { port => 51415 }
-
-  # Default port is 12201/udp
-  gelf { }
-
-  # This generates one test event per minute.
-  # It is great for debugging, but you might
-  # want to remove it in production.
-  heartbeat { }
-}
-
-filter {
-}
-output {
-  elasticsearch {
-    hosts => [\"#ELASTICSEARCH#\"]#SSL##ELASTICSEARCH_USER##ELASTICSEARCH_PASSWORD#
-  }
-}
-" | \
+cat /config-dir/70-outputs.conf | \
     sed "s/#ELASTICSEARCH#/$host/g" |\
-    sed "s/#SSL#/$ssl/" |\
+    sed "s/#SSL#/$ssl/g" |\
     sed "s/#ELASTICSEARCH_USER#/$user/g" |\
-    sed "s/#ELASTICSEARCH_PASSWORD#/$password/g" > /config-dir/logstash.conf
+    sed "s/#ELASTICSEARCH_PASSWORD#/$password/g" > /tmp/70-outputs.conf
+
+mv /tmp/70-outputs.conf /config-dir/70-outputs.conf
 
 # Add logstash as command if needed
 if [ "${1:0:1}" = '-' ]; then

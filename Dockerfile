@@ -7,4 +7,4 @@ ENV "ELASTICSEARCH_ADDR=elasticsearch" \
 
 ADD rootfs /
 
-CMD ["-f", "/config-dir/logstash.conf"]
+CMD ["-f", "/config-dir/"]
