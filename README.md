@@ -39,3 +39,4 @@ For example:
       -e ELASTICSEARCH_ADDR=myelastic.example.com \
       -e ELASTICSEARCH_PORT=9201 \
       basi/logstash
+
