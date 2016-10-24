@@ -1,6 +1,11 @@
 # Softonic Logstash
 
-This image starts a logstash container with a basic configuration that parses syslog data in port 51415 and gelf in 12201/udp 
+This image starts a logstash container with a basic configuration that parses:
+ 
+- syslog data in port 51415
+- gelf in port 12201/udp
+- beats in port 51044
+- http in port 8080
 
 ## Container execution
 
@@ -12,7 +17,9 @@ By default it tries to send the logs to the Elasticsearch on the address "elasti
       --name logstash \
       -e LOGSPOUT=ignore \
       basi/logstash
-    
+
+The default configuration assumes that the Elasticsearch server is in the address ```http://elasticsearch:9200```, without user/pass.
+
 This can be changed using the environment variables:
 
 - ELASTICSEARCH_ADDR
