@@ -7,13 +7,13 @@ user=""
 password=""
 if [ ! -z $SSL ] && [ $SSL = true ]
 then
-    ssl="\n        ssl => true"
+    ssl="\nssl => true\n"
 fi
 
 if [ ! -z ${ELASTICSEARCH_PASSWORD} ] && [ ! -z ${ELASTICSEARCH_USER} ]
 then
-    user="\n        user => ${ELASTICSEARCH_USER}"
-    password="\n        password => ${ELASTICSEARCH_PASSWORD}"
+    user="\nuser => ${ELASTICSEARCH_USER}\n"
+    password="\npassword => ${ELASTICSEARCH_PASSWORD}\n"
 fi
 
 cat /config-dir/70-outputs.conf | \
