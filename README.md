@@ -1,5 +1,8 @@
 # Softonic Logstash
 
+[![](https://images.microbadger.com/badges/image/basi/logstash.svg)](https://microbadger.com/images/basi/logstash "Get your own image badge on microbadger.com")
+[![](https://images.microbadger.com/badges/version/basi/logstash.svg)](https://microbadger.com/images/basi/logstash "Get your own version badge on microbadger.com")
+
 This image starts a logstash container with a basic configuration that parses:
  
 - syslog data in port 51415
