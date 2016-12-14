@@ -17,7 +17,12 @@ LABEL org.label-schema.vendor="Softonic" \
     org.label-schema.version=$version \
     org.label-schema.schema-version="1.0" \
     org.label-schema.docker.cmd.devel="" \
-    org.label-schema.docker.params="SSL=Elasticsearch endpoint is under HTTPS, ELASTICSEARCH_USER=Elasticsearch User, ELASTICSEARCH_PASSWORD=Elasticsearch password, ELASTICSEARCH_ADDR=Elasticsearch address, ELASTICSEARCH_PORT=Elasticserach port" \
+    org.label-schema.docker.params="DEBUG=Activate all logs in stdout,\
+ELASTICSEARCH_SSL=Elasticsearch endpoint is under HTTPS,\
+ELASTICSEARCH_USER=Elasticsearch User,\
+ELASTICSEARCH_PASSWORD=Elasticsearch password,\
+ELASTICSEARCH_ADDR=Elasticsearch address,\
+ELASTICSEARCH_PORT=Elasticserach port" \
     org.label-schema.build-date=$build_date
 
 

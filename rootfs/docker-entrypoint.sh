@@ -1,13 +1,15 @@
 #!/bin/bash -e
 
-host="${ELASTICSEARCH_ADDR}:${ELASTICSEARCH_PORT}"
+elasticsearch_host="${ELASTICSEARCH_ADDR}:${ELASTICSEARCH_PORT}"
 
-ssl=""
-user=""
-password=""
-if [ ! -z $SSL ] && [ $SSL = true ]
+elasticsearch_ssl=""
+elasticsearch_user=""
+elasticsearch_password=""
+debug=""
+
+if [ ! -z $ELASTICSEARCH_SSL ] && [ $ELASTICSEARCH_SSL = true ]
 then
-    ssl="\nssl => true\n"
+    elasticsearch_ssl="\nssl => true\n"
 fi
 
 if [ ! -z ${ELASTICSEARCH_PASSWORD} ] && [ ! -z ${ELASTICSEARCH_USER} ]
@@ -16,11 +18,17 @@ then
     password="\npassword => ${ELASTICSEARCH_PASSWORD}\n"
 fi
 
+if [ ! -z $DEBUG ] && [ $DEBUG = true ]
+then
+    debug="stdout { codec => rubydebug }\n"
+fi
+
 cat /config-dir/70-outputs.conf | \
-    sed "s/#ELASTICSEARCH#/$host/g" |\
-    sed "s/#SSL#/$ssl/g" |\
-    sed "s/#ELASTICSEARCH_USER#/$user/g" |\
-    sed "s/#ELASTICSEARCH_PASSWORD#/$password/g" > /tmp/70-outputs.conf
+    sed "s/#DEBUG#/$debug/g" |\
+    sed "s/#ELASTICSEARCH#/$elasticsearch_host/g" |\
+    sed "s/#ELASTICSEARCH_SSL#/$elasticsearch_ssl/g" |\
+    sed "s/#ELASTICSEARCH_USER#/$elasticsearch_user/g" |\
+    sed "s/#ELASTICSEARCH_PASSWORD#/$elasticsearch_password/g" > /tmp/70-outputs.conf
 
 mv /tmp/70-outputs.conf /config-dir/70-outputs.conf
 

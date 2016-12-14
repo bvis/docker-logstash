@@ -25,9 +25,10 @@ The default configuration assumes that the Elasticsearch server is in the addres
 
 This can be changed using the environment variables:
 
+- DEBUG
 - ELASTICSEARCH_ADDR
 - ELASTICSEARCH_PORT
-- SSL
+- ELASTICSEARCH_SSL
 - ELASTICSEARCH_USER
 - ELASTICSEARCH_PASSWORD
 
@@ -35,8 +36,9 @@ For example:
 
     docker service create \
       --name logstash \
+      -e DEBUG=false \
       -e LOGSPOUT=ignore \
-      -e SSL=true \
+      -e ELASTICSEARCH_SSL=true \
       -e ELASTICSEARCH_USER=user \
       -e ELASTICSEARCH_PASSWORD=password \
       -e ELASTICSEARCH_ADDR=myelastic.example.com \
