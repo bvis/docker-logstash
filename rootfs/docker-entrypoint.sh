@@ -9,13 +9,13 @@ debug=""
 
 if [ ! -z $ELASTICSEARCH_SSL ] && [ $ELASTICSEARCH_SSL = true ]
 then
-    elasticsearch_ssl="\nssl => true\n"
+    elasticsearch_ssl="\n        ssl => true\n"
 fi
 
 if [ ! -z ${ELASTICSEARCH_PASSWORD} ] && [ ! -z ${ELASTICSEARCH_USER} ]
 then
-    user="\nuser => ${ELASTICSEARCH_USER}\n"
-    password="\npassword => ${ELASTICSEARCH_PASSWORD}\n"
+    elasticsearch_user="\n        user => ${ELASTICSEARCH_USER}\n"
+    elasticsearch_password="\n        password => ${ELASTICSEARCH_PASSWORD}\n"
 fi
 
 if [ ! -z $DEBUG ] && [ $DEBUG = true ]
