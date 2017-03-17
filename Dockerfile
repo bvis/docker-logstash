@@ -1,4 +1,4 @@
-FROM logstash:2
+FROM logstash:5-alpine
 
 ARG "version=0.1.0-dev"
 ARG "build_date=unknown"
