@@ -23,7 +23,7 @@ then
     debug="stdout { codec => rubydebug }\n"
 fi
 
-cat /config-dir/70-outputs.conf | \
+cat /opt/logstash/templates/70-outputs.conf.tpl | \
     sed "s/#DEBUG#/$debug/g" |\
     sed "s/#ELASTICSEARCH#/$elasticsearch_host/g" |\
     sed "s/#ELASTICSEARCH_SSL#/$elasticsearch_ssl/g" |\
