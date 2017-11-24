@@ -5,6 +5,7 @@
 
 This image starts a logstash container with a basic configuration that parses:
  
+- JSON (e.g. for Logspout) in port 5000 (TCP and UDP)
 - syslog data in port 51415
 - gelf in port 12201/udp
 - beats in port 51044
