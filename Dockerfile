@@ -1,10 +1,10 @@
 FROM logstash:5-alpine
 
-ARG "version=0.1.0-dev"
-ARG "build_date=unknown"
-ARG "commit_hash=unknown"
-ARG "vcs_url=unknown"
-ARG "vcs_branch=unknown"
+ARG version=0.1.0-dev
+ARG build_date=unknown
+ARG commit_hash=unknown
+ARG vcs_url=unknown
+ARG vcs_branch=unknown
 
 LABEL org.label-schema.vendor="Softonic" \
     org.label-schema.name="Logstash" \
@@ -26,8 +26,8 @@ ELASTICSEARCH_PORT=Elasticserach port" \
     org.label-schema.build-date=$build_date
 
 
-ENV "ELASTICSEARCH_ADDR=elasticsearch" \
-    "ELASTICSEARCH_PORT=9200"
+ENV ELASTICSEARCH_ADDR=elasticsearch \
+    ELASTICSEARCH_PORT=9200
 
 ADD rootfs /
 
