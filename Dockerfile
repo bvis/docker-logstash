@@ -1,4 +1,4 @@
-FROM logstash:5-alpine
+FROM docker.elastic.co/logstash/logstash-oss:6.2.0
 
 ARG version=0.1.0-dev
 ARG build_date=unknown
