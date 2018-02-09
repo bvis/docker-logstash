@@ -1,30 +1,30 @@
 
 output {
-  if [type] == "request-incoming" {
+  if [log_type] == "request-incoming" {
     elasticsearch {
       hosts => ["#ELASTICSEARCH#"]#ELASTICSEARCH_SSL##ELASTICSEARCH_USER##ELASTICSEARCH_PASSWORD#
-      index => "request-incoming-%{+YYYY.MM.dd}"
+      index => "#ELASTICSEARCH_INDEX_PREFIX#request-incoming-%{+YYYY.MM.dd}"
     }
   }
-  else if [type] == "request-outgoing" {
+  else if [log_type] == "request-outgoing" {
     elasticsearch {
       hosts => ["#ELASTICSEARCH#"]#ELASTICSEARCH_SSL##ELASTICSEARCH_USER##ELASTICSEARCH_PASSWORD#
-      index => "request-outgoing-%{+YYYY.MM.dd}"
+      index => "#ELASTICSEARCH_INDEX_PREFIX#request-outgoing-%{+YYYY.MM.dd}"
     }
-  } else if [type] == "docker-events" {
+  } else if [log_type] == "docker-events" {
     elasticsearch {
       hosts => ["#ELASTICSEARCH#"]#ELASTICSEARCH_SSL##ELASTICSEARCH_USER##ELASTICSEARCH_PASSWORD#
-      index => "docker-events-%{+YYYY.MM.dd}"
+      index => "#ELASTICSEARCH_INDEX_PREFIX#docker-events-%{+YYYY.MM.dd}"
     }
-  } else if [type] == "alert" {
+  } else if [log_type] == "alert" {
     elasticsearch {
       hosts => ["#ELASTICSEARCH#"]#ELASTICSEARCH_SSL##ELASTICSEARCH_USER##ELASTICSEARCH_PASSWORD#
-      index => "logstash-alerts-%{+YYYY.MM.dd}"
+      index => "#ELASTICSEARCH_INDEX_PREFIX#logstash-alerts-%{+YYYY.MM.dd}"
     }
   } else {
      elasticsearch {
         hosts => ["#ELASTICSEARCH#"]#ELASTICSEARCH_SSL##ELASTICSEARCH_USER##ELASTICSEARCH_PASSWORD#
-        index => "logstash-logs-%{+YYYY.MM.dd}"
+        index => "#ELASTICSEARCH_INDEX_PREFIX#logstash-logs-%{+YYYY.MM.dd}"
      }
   }
 
