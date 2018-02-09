@@ -5,6 +5,7 @@ elasticsearch_host="${ELASTICSEARCH_ADDR}:${ELASTICSEARCH_PORT}"
 elasticsearch_ssl=""
 elasticsearch_user=""
 elasticsearch_password=""
+elasticsearch_index_prefix=""
 debug=""
 
 if [ ! -z $ELASTICSEARCH_SSL ] && [ $ELASTICSEARCH_SSL = true ]
@@ -23,24 +24,19 @@ then
     debug="stdout { codec => rubydebug }\n"
 fi
 
+if [ ! -z $ELASTICSEARCH_INDEX_PREFIX ]
+then
+    elasticsearch_index_prefix=$ELASTICSEARCH_INDEX_PREFIX
+fi
+
 cat /opt/logstash/templates/70-outputs.conf.tpl | \
     sed "s/#DEBUG#/$debug/g" |\
+    sed "s/#ELASTICSEARCH_INDEX_PREFIX#/$elasticsearch_index_prefix/g" |\
     sed "s/#ELASTICSEARCH#/$elasticsearch_host/g" |\
     sed "s/#ELASTICSEARCH_SSL#/$elasticsearch_ssl/g" |\
     sed "s/#ELASTICSEARCH_USER#/$elasticsearch_user/g" |\
     sed "s/#ELASTICSEARCH_PASSWORD#/$elasticsearch_password/g" > /tmp/70-outputs.conf
 
-mv /tmp/70-outputs.conf /config-dir/70-outputs.conf
+mv /tmp/70-outputs.conf /usr/share/logstash/pipeline/70-outputs.conf
 
-# first arg is `-f` or `--some-option`
-if [ "${1#-}" != "$1" ]; then
-	set -- logstash "$@"
-fi
-
-# Run as user "logstash" if the command is "logstash"
-# allow the container to be started with `--user`
-if [ "$1" = 'logstash' -a "$(id -u)" = '0' ]; then
-	set -- su-exec logstash "$@"
-fi
-
-exec "$@"
+exec /usr/local/bin/docker-entrypoint "$@"

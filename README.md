@@ -32,6 +32,7 @@ This can be changed using the environment variables:
 - ELASTICSEARCH_SSL
 - ELASTICSEARCH_USER
 - ELASTICSEARCH_PASSWORD
+- ELASTICSEARCH_INDEX_PREFIX
 
 For example:
 
@@ -44,5 +45,6 @@ For example:
       -e ELASTICSEARCH_PASSWORD=password \
       -e ELASTICSEARCH_ADDR=myelastic.example.com \
       -e ELASTICSEARCH_PORT=9201 \
+      -e ELASTICSEARCH_INDEX_PREFIX="swarm-" \
       basi/logstash
 

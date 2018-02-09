@@ -18,6 +18,7 @@ LABEL org.label-schema.vendor="Softonic" \
     org.label-schema.schema-version="1.0" \
     org.label-schema.docker.cmd.devel="" \
     org.label-schema.docker.params="DEBUG=Activate all logs in stdout,\
+ELASTICSEARCH_INDEX_PREFIX=Elasticsearch indexes prefix,\
 ELASTICSEARCH_SSL=Elasticsearch endpoint is under HTTPS,\
 ELASTICSEARCH_USER=Elasticsearch User,\
 ELASTICSEARCH_PASSWORD=Elasticsearch password,\
@@ -25,10 +26,10 @@ ELASTICSEARCH_ADDR=Elasticsearch address,\
 ELASTICSEARCH_PORT=Elasticserach port" \
     org.label-schema.build-date=$build_date
 
-
 ENV ELASTICSEARCH_ADDR=elasticsearch \
     ELASTICSEARCH_PORT=9200
 
-ADD rootfs /
+RUN rm -f /usr/share/logstash/pipeline/logstash.conf
+COPY --chown=logstash:logstash rootfs /
 
-CMD ["-f", "/config-dir/"]
+ENTRYPOINT ["/docker-entrypoint.sh"]
