@@ -1,0 +1,6 @@
+{
+  "template" : "botsunit-logs-*",
+  "settings" : {
+    "index.codec" : "best_compression"
+  }
+}
