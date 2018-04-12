@@ -24,7 +24,9 @@ output {
   } else {
      elasticsearch {
         hosts => ["#ELASTICSEARCH#"]#ELASTICSEARCH_SSL##ELASTICSEARCH_USER##ELASTICSEARCH_PASSWORD#
-        index => "#ELASTICSEARCH_INDEX_PREFIX#logstash-logs-%{+YYYY.MM.dd}"
+        index => "#ELASTICSEARCH_INDEX_PREFIX#botsunit-logs-%{+YYYY.MM.dd}"
+        template_name => "botsunit-template"
+        template => "/opt/logstash/templates/botsunit-template.json"
      }
   }
 
